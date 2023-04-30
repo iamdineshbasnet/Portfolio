@@ -1,0 +1,38 @@
+@import "variables";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    color: $light-slate;
+    background-color: $light-navy;
+    overflow-x: hidden;
+}
+@media screen and (max-width: 768px){
+    html{
+        font-size: 50%;
+    }
+    
+}
+@media screen and (max-width: 480px) {
+    html{
+        font-size: 45%;
+    }
+}
+@media screen and (max-width: 410px) {
+    html{
+        font-size: 40%;
+    }
+}
+@media screen and (max-width: 360px) {
+    html{
+        font-size: 35%;
+    }
+}

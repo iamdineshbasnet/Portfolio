@@ -1,0 +1,123 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.header {
+    height: 8vh;
+    @include flex(center, null, row, null);
+    padding: 0 6rem;
+
+    .nav {
+        width: 100%;
+        @include flex(center, space-between, row, null);
+        .navMenu {
+            @include flex(null, null, row, 3rem);
+            position: relative;
+            .closeIconBox {
+                @include position(absolute, 1rem, 1rem, null, null, null, null);
+                display: none;
+                .icon {
+                    font-size: $large;
+                    cursor: pointer;
+                    color: $light-slate;
+                    transition: all 0.3s;
+                    &:hover {
+                        color: $green-color;
+                    }
+                }
+            }
+            .navItem {
+                list-style: none;
+                transition: all 0.3s;
+                span {
+                    @include font($primaryFont, $normal, 400);
+                    color: $green-color;
+                }
+                .item {
+                    @include font($secondaryFont, $normal, 400);
+                    text-decoration: none;
+                    color: $light-slate;
+                }
+            }
+            &:hover .navItem {
+                color: $light-slate;
+            }
+            &:hover .navItem:not(:hover) {
+                opacity: 0.5;
+            }
+        }
+
+        .menuBox {
+            display: none;
+            .menuIcon {
+                color: $light-slate;
+                font-size: $large;
+                cursor: pointer;
+            }
+        }
+        .logo {
+            transform: translateX(-25%);
+            .svg {
+                .path1 {
+                    stroke-dasharray: 165;
+                    stroke-dashoffset: 165;
+                    animation: animate1 4s linear forwards;
+                }
+                @keyframes animate1 {
+                    0% {
+                        stroke-dashoffset: 165;
+                    }
+                    100% {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+        }
+
+        .mobileNavMenu{
+            @include position(fixed, null, 50%, null, -6rem, -50%, 0);
+            @include flex(center, null, row, 5rem);
+            z-index: 9999;
+            border: 1px solid rgba($color: $light-slate, $alpha: .2);
+            box-shadow: .5rem .5rem .5rem rgba($color: $dark-navy, $alpha: .5);
+            background-color: $light-navy;
+            backdrop-filter: blur(.1rem);
+            padding: 1rem 2.5rem;
+            border-radius: 4rem;
+            transition: all .5s;
+            .mobileNavItem{
+                list-style: none;
+                cursor: pointer;
+                .mobileLink{
+                    text-decoration: none;
+                    color: $light-slate;
+                    font-size: $large;
+                    .icon{
+                        color: $light-slate;
+                        font-size: $large;
+                    }
+                }
+            }
+
+        }
+        @media (max-width: 768px) {
+            .mobileNavMenu{
+            @include position(fixed, null, 50%, null, 2rem, -50%, 0);
+
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        position: relative;
+        .nav {
+            .menuBox {
+                display: block;
+                transition: all 1s;
+            }
+            .navMenu {
+                display: none;
+            }
+        }
+    }
+}
