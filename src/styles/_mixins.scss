@@ -1,20 +1,75 @@
+@import './variables';
 @mixin flex($alignItems, $justifyContent, $direction, $gap) {
-    display: flex;
-    align-items: $alignItems;
-    justify-content: $justifyContent;
-    flex-direction: $direction;
-    gap: $gap;
+	display: flex;
+	align-items: $alignItems;
+	justify-content: $justifyContent;
+	flex-direction: $direction;
+	gap: $gap;
 }
 @mixin font($family, $size, $weight) {
-    font-family: $family;
-    font-size: $size;
-    font-weight: $weight;
+	font-family: $family;
+	font-size: $size;
+	font-weight: $weight;
 }
-@mixin position($position, $top, $left, $right, $bottom, $transformX, $transformY){
-    position: $position;
-    top: $top;
-    left: $left;
-    right: $right;
-    bottom: $bottom;
-    transform: translate($transformX, $transformY);
+@mixin position(
+	$position,
+	$top,
+	$left,
+	$right,
+	$bottom,
+	$transformX,
+	$transformY
+) {
+	position: $position;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	transform: translate($transformX, $transformY);
+}
+
+@mixin button($width) {
+    padding: 1rem 3rem;
+	border-radius: 0.4rem;
+	background-color: transparent;
+	border: 0.2rem solid $green-color;
+	outline-color: transparent;
+	color: $green-color;
+    width: $width;
+	transition: all 0.5s;
+	cursor: pointer;
+    @include font($primaryFont, $normal, 400);
+	&:hover {
+		border: 0.2rem solid transparent;
+		color: $dark-navy;
+		background-color: $green-color;
+	}
+}
+
+@mixin xxs {
+	@media (max-width: 390px) {
+		@content;
+	}
+}
+@mixin xs {
+	@media (max-width: 500px) {
+		@content;
+	}
+}
+@mixin sm {
+	@media (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (max-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (min-width: 1200px) {
+		@content;
+	}
 }

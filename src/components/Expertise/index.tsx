@@ -24,7 +24,9 @@ const cardContentList = [
 ];
 const index = () => {
     return (
-        <main className={styles.expertise}>
+        <main className={styles.expertise} id="Expertise">
+
+            <section className={styles.section}>
             <PageHeader
                 title={"My Expertise"}
                 subtitle={"areas of excellence"}
@@ -56,6 +58,8 @@ const index = () => {
                 </div>
 
                 ))}
+            </section>
+
             </section>
         </main>
     );

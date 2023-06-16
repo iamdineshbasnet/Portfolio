@@ -1,78 +1,88 @@
-@use "variables" as *;
-@use "mixins" as *;
+@import '../styles/mixins';
+@import '../styles/variables';
 
 .expertise{
-    width: 100vw;
-    min-height: 100vh;
-    background-color: $dark-navy;
-    .content{
-        @include flex(center, center, row, 2rem);
-        margin-top: 8rem;
-        .card{
-            max-width: 37rem;
-            min-width: 37rem;
-            border: 4px solid $green-color;
-            padding: 2rem;
+    background-color: $navy;
+    @include flex(center, center, row, null);
+    padding: 1rem 6rem;
+    min-height: calc(90vh);
 
-            .cardHeader{
-                @include flex(center, null, row, 2rem);
-                .icon{
-                    font-size: $extraLarge + .2rem;
-                }
-                .cardTitle{
-                    p{
-                        @include font($secondaryFont, $medium, 500);
-                        line-height: 2.5rem;
-                        letter-spacing: .05rem;
-                        position: relative;
-                        z-index: 11;
-                        color: #FFF;
-                    }
-                    .titleHighlights{
-                        position: relative;
-                        &::after{
-                            content: '';
-                            @include position(absolute, null, 0, null, 0, null, null);
-                            width: 100%;
-                            height: 50%;
-                            background: $light-green;
-                            z-index: 0;
-                        }
-                    }
-                }
-            }
-
-            .cardContent{
-                margin-top: 2rem;
-                .tag{
-                    @include font($secondaryFont, $normal, 400);
-                    padding: .5rem 0;
-                }
-
-                .cardDescription{
-                    padding-left: 2rem;
-                    p{
-                        @include font($primaryFont, $small, 400);
-                        position: relative;
-                        padding: 0 1rem;
-                        color: #FFF;
-
-                        &::after{
-                            content: "";
-                            @include position(absolute, 0, 0, null, null, null, null);
-                            height: 100%;
-                            width: .1rem;
-                            background: $light-slate;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    @media screen and (max-width: 768px) {
+    @include md{
+		padding: 0 3rem;
+	}
+    .section{
+        max-width: 1200px;
+        width: 100%;
         .content{
-            margin-top: 3rem;
-            @include flex(center, center, column, 5rem);
+            @include flex(center, flex-start, row, 2rem);
+            @include sm{
+                
+                @include flex(flex-start, flex-start, column, 2rem);
+            }
+            .card{
+                max-width: 50rem;
+                min-width: 28rem;
+                border: 4px solid $green-color;
+                padding: 2rem;
+                @include sm{
+                    max-width: 100%;
+                }
+                .cardHeader{
+                    @include flex(center, null, row, 2rem);
+                    .icon{
+                        font-size: $extraLarge + .2rem;
+                    }
+                    .cardTitle{
+                        p{
+                            @include font($secondaryFont, $medium, 500);
+                            line-height: 2.5rem;
+                            letter-spacing: .05rem;
+                            position: relative;
+                            z-index: 11;
+                            color: #FFF;
+                        }
+                        .titleHighlights{
+                            position: relative;
+                            &::after{
+                                content: '';
+                                @include position(absolute, null, 0, null, 0, null, null);
+                                width: 100%;
+                                height: 50%;
+                                background: $light-green;
+                                z-index: 0;
+                            }
+                        }
+                    }
+                }
+    
+                .cardContent{
+                    margin-top: 2rem;
+                    .tag{
+                        @include font($secondaryFont, $normal, 400);
+                        padding: .5rem 0;
+                    }
+    
+                    .cardDescription{
+                        padding-left: 2rem;
+                        p{
+                            @include font($primaryFont, $small, 400);
+                            position: relative;
+                            padding: 0 1rem;
+                            color: #FFF;
+    
+                            &::after{
+                                content: "";
+                                @include position(absolute, 0, 0, null, null, null, null);
+                                height: 100%;
+                                width: .1rem;
+                                background: $light-slate;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
     }
+   
 }

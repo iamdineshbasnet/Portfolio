@@ -1,116 +1,26 @@
-@use "mixins" as *;
-@use "variables" as *;
+@import '../styles/mixins';
+@import '../styles/variables';
 
 .work {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: $dark-navy;
-
-    .workSection {
-        padding: 0 20rem;
-        .heading {
-            border: 1px solid red;
-            margin-bottom: 3rem;
-            p {
-                color: $green-color;
-                @include font($primaryFont, $normal, 400);
-                text-transform: capitalize;
+	background-color: $navy;
+	@include flex(center, center, row, null);
+	padding: 1rem 6rem;
+	@include md {
+		padding: 0 3rem;
+	}
+    .section{
+        max-width: 1200px;
+        width: 100%;
+        .workSection {
+            .heading {
+                margin-bottom: 3rem;
+                p {
+                    color: $green-color;
+                    @include font($primaryFont, $normal, 400);
+                    text-transform: capitalize;
+                }
             }
-        }
-        @media screen and (max-width: 768px) {
-            .heading{
-                text-align: center;
-            }
-        }
-        .cardContainer {
-            @include flex(null, center,row, 1rem);
-            flex-wrap: wrap;
-            .card {
-                width: fit-content;
-                padding: 1rem;
-                border: 1px solid rgba($color: $light-slate, $alpha: 0.4);
-                box-shadow: 0 0 .1rem rgba($color: $light-slate, $alpha: 0.4);
-                border-radius: 0.4rem;
-                backdrop-filter: blur(10px);
-                .cardTitle {
-                    margin-bottom: 1.4rem;
-                    h6 {
-                        @include font($primaryFont, $normal+.2rem, 400);
-                        color: $light-slate;
-                    }
-                }
-                .cardImage {
-                    max-height: 20rem;
-                    min-height: 20rem;
-                    min-width: 40rem;
-                    max-width: 40rem;
-                    border-radius: 0.4rem;
-                    overflow: hidden;
-                    img {
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                        cursor: pointer;
-                        transition: all 0.5s;
-                    }
-                    &:hover img {
-                        scale: 1.2;
-                    }
-                }
-                .cardTagBox {
-                    margin: 2rem 0;
-                    @include flex(center, null, row, .6rem);
-                    .tagItem {
-                        @include flex(center, null, row, 0.2rem);
-                        border: 1px solid rgba($color: $green-color, $alpha: 0.4);
-                        padding: 0.1rem 0.8rem 0 0.4rem;
-                        width: fit-content;
-                        border-radius: 10rem;
-                        .icon {
-                            font-size: $small;
-                            color: $green-color;
-                        }
-                        .tagName {
-                            @include font($primaryFont, $extraSmall, 400);
-                        }
-                    }
-                }
-                .cardAction {
-                    @include flex(center, null, row, 1rem);
-                    .cardActionItem {
-                        @include flex(center, null, row, 0.3rem);
-                        border: 1px solid transparent;
-                        border-radius: .4rem;
-                        padding: 0.5rem;
-                        width: fit-content;
-                        cursor: pointer;
-                        transition: all 0.5s;
-                        &:hover{
-                            border: 1px solid $green-color;
     
-                        }
-                        &:hover p,
-                        &:hover .icon{
-                            color: $green-color;
-                        }
-                        p {
-                            @include font($primaryFont, $small, 400);
-                            transition: all 0.5s;
-                        }
-                        .icon {
-                            font-size: $normal;
-                            transition: all 0.5s;
-                        }
-                    }
-                }
-                
-            }
         }
-        @media screen and (max-width: 768px) {
-            .cardContainer{
-                @include flex(null, null, null, 3rem);
-            }
-        }
-        
     }
 }

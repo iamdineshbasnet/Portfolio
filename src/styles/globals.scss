@@ -1,38 +1,164 @@
-@import "variables";
-
+@import 'variables';
+@import './mixins';
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 html {
-    font-size: 62.5%;
+	font-size: 62.5%;
 }
 body {
-    color: $light-slate;
-    background-color: $light-navy;
-    overflow-x: hidden;
+	color: $light-slate;
+	background-color: $navy;
+	overflow-x: hidden;
+	/* width */
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		// box-shadow: inset 0 0 .5rem transparent;
+		// border-radius: 2rem;
+		background: #000;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: $green-color;
+		border-radius: 5rem;
+		cursor: grab !important;
+		transition: all 0.5s;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: rgba($color: $green-color, $alpha: 0.5);
+	}
 }
-@media screen and (max-width: 768px){
-    html{
-        font-size: 50%;
-    }
-    
+
+
+.vertical-timeline {
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 18px;
+		height: 100%;
+		width: 2px !important;
+		background: $green-color !important;
+	}
+	.vertical-timeline-element-icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		box-shadow: 0 0 0 2px $green-color, inset 0 2px 0 rgba(0, 0, 0, 0.08),
+			0 3px 0 4px rgba(0, 0, 0, 0.05);
+			.icon{
+				color: rgba($color: white, $alpha: 0.6);
+			}
+	}
 }
-@media screen and (max-width: 480px) {
-    html{
-        font-size: 45%;
-    }
-}
-@media screen and (max-width: 410px) {
-    html{
-        font-size: 40%;
-    }
-}
-@media screen and (max-width: 360px) {
-    html{
-        font-size: 35%;
-    }
+.vertical-timeline {
+	margin: 0 !important;
+	width: 100% !important;
+
+	&.vertical-timeline--animate {
+		.vertical-timeline-element-content {
+			background: transparent;
+			// width: 100%;
+			max-width: 50rem;
+			box-shadow: 0 0 0 #ddd;
+			padding: 0 !important;
+			.vertical-timeline-element-content-arrow {
+				display: none;
+			}
+			.card {
+				max-width: 60rem !important;
+				padding: 1rem;
+				border: 1px solid rgba($color: $light-slate, $alpha: 0.4);
+				box-shadow: 0 0 0.1rem rgba($color: $light-slate, $alpha: 0.4);
+				border-radius: 0.4rem;
+				backdrop-filter: blur(10px);
+				.cardTitle {
+					margin-bottom: 1.4rem;
+					h6 {
+						@include font($primaryFont, $normal + 0.2rem, 400);
+						color: $light-slate;
+					}
+				}
+				.cardImage {
+					border-radius: 0.4rem;
+					overflow: hidden;
+					img {
+						aspect-ratio: 2/1;
+						height: 100%;
+						width: 100%;
+						object-fit: cover;
+						cursor: pointer;
+						transition: all 0.5s;
+					}
+					&:hover img {
+						scale: 1.2;
+					}
+				}
+				.cardTagBox {
+					margin: 2rem 0 !important;
+					@include flex(center, null, row, 0.6rem);
+					.tagItem {
+						@include flex(center, flex-start, row, null);
+						border: 1px solid rgba($color: $green-color, $alpha: 0.4);
+						padding: 0.1rem 0.8rem 0 0.4rem !important;
+						width: max-content !important;
+						border-radius: 10rem;
+						.icon {
+							font-size: $small;
+							color: $green-color;
+						}
+						.tagName {
+							@include font($primaryFont, $extraSmall, 400);
+							margin-top: 0rem;
+						}
+					}
+				}
+				.cardAction {
+					@include flex(center, null, row, 1rem);
+	
+					.cardActionItem {
+						color: inherit;
+						text-decoration: none;
+						@include flex(center, null, row, 0.3rem);
+						border: 1px solid transparent;
+						border-radius: 0.4rem;
+						padding: 0.5rem;
+						width: fit-content;
+						cursor: pointer;
+						transition: all 0.5s;
+						&:hover {
+							border: 1px solid $green-color;
+						}
+						&:hover p,
+						&:hover .icon {
+							color: $green-color;
+						}
+						p {
+							@include font($primaryFont, $small, 400);
+							transition: all 0.5s;
+							margin-top: 0rem;
+						}
+						.icon {
+							font-size: $normal;
+							transition: all 0.5s;
+						}
+					}
+				}
+			}
+		}
+	}
 }

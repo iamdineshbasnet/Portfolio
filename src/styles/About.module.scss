@@ -1,0 +1,17 @@
+@import '../styles/mixins';
+@import '../styles/variables';
+
+.about{
+    
+    background-color: $navy;
+	@include flex(center, center, row, null);
+	padding: 1rem 6rem;
+    height: calc(90vh);
+	@include md {
+		padding: 0 3rem;
+	}
+    .section{
+        max-width: 1200px;
+        width: 100%;
+    }
+}

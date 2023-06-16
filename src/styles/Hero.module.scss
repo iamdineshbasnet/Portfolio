@@ -1,109 +1,97 @@
-@use "variables" as *;
-@use "mixins" as *;
+@import '../styles/mixins';
+@import '../styles/variables';
 
 .hero {
-    position: relative;
-    overflow-x: hidden;
-    @include flex(flex-start, null, row, 10rem);
-    padding: 10rem 6rem;
-    min-height: calc(100vh - 8vh);
+	@include flex(flex-start, center, row, null);
+    padding: 1rem 6rem;
+    background-color: $navy;
+	margin-top: 8rem;
+	height: calc(100vh - 8vh);
+	@include md{
+		padding: 0 3rem;
+	}
+	.left {
+		@include flex(center, center, column, 2rem);
+        @include position(fixed, 50%, 2rem, null , null, 0, -50%);
+		@include md{
+			display: none;
+		}
+		.text {
+			writing-mode: vertical-lr;
+			@include font($primaryFont, $normal, 400);
+		}
+		.line {
+			width: 0.18rem;
+			height: 15rem;
+			background: linear-gradient(to bottom, transparent, $lightest-navy);
+			border-radius: 1rem;
+			animation: shine 2s linear infinite;
+		}
+		.iconBox {
+			@include flex(null, center, column, 1.5rem);
+			@include font(null, $normal, null);
+			.link {
+				text-decoration: none;
+				color: $light-slate;
+				transition: all 0.5s;
+				&:hover {
+					color: $green-color;
+				}
+			}
+		}
+	}
 
-    .left {
-        @include flex(center, center, column, 2rem);
-        .text {
-            writing-mode: vertical-lr;
-            @include font($primaryFont, $normal, 400);
-        }
-        .line {
-            width: 0.18rem;
-            height: 25rem;
-            background: linear-gradient(to bottom, transparent, $lightest-navy);
-            border-radius: 1rem;
-            animation: shine 2s linear infinite;
-        }
-        .iconBox {
-            @include flex(null, center, column, 1.5rem);
-            @include font(null, $normal, null);
-            .link {
-                text-decoration: none;
-                color: $light-slate;
-                transition: all .5s;
-                &:hover {
-                    color: $green-color;
+	.right {
+		@include flex(null, null, column, null);
+		max-width: 1200px;
+        width: 100%;
+        
+		.greet {
+			background: $dark-navy;
+			width: fit-content;
+			border-radius: 4rem;
+            margin-bottom: 1rem;
+			h6 {
+				@include font($primaryFont, $extraSmall, 400);
+				padding: 0.6rem 1.4rem;
+			}
+		}
+		.title {
+			h1 {
+				@include font($secondaryFont, $extraLarge + $large, 600);
+				color: #CCD6F6;
+                line-height: 1.2;
+                @include sm{
+                    font-size: $extraLarge + $normal;
                 }
-            }
-        }
-    }
-
-    .right{
-        @include flex(null, null, column, null);
-        width: 50rem;
-        .greet{
-            background: $navy;
-            width: fit-content;
-            border-radius: 4rem;
-            h6{
-                @include font($primaryFont, $extraSmall, 400);
-                padding: .6rem 1.4rem;
-            }
-        }
-        .title{
-            h1{
-                @include font($secondaryFont, $large + 1.2rem, 600);
-                letter-spacing: .2rem;
-                span{
-                    color: $green-color;
+				@include xs{
+					font-size: $large;
+				}
+			}
+		}
+		.subTitle {
+			h3 {
+				@include font($secondaryFont, $extraLarge + $normal, 700);
+                @include sm{
+                    font-size: $extraLarge;
                 }
-            }
-        }
-        .subTitle{
-            h3{
-                @include font($secondaryFont, $medium + .8rem, 500);
-                
-            }
-        }
-        .description{
-            margin: 4rem 0;
-            p{
-                @include font($primaryFont, $normal, 300);
-
-            }
-        }
-        .button{
-            button{
-                padding: 1rem 3rem;
-                @include font($primaryFont, $normal, 400);
-                border-radius: .4rem;
-                background-color: transparent;
-                border: .2rem solid $green-color;
-                outline-color: transparent;
-                color: $green-color;
-                transition: all .5s;
-                cursor: pointer;
-                &:hover{
-                    border: .2rem solid transparent;
-                    color: $dark-navy;
-                    background-color: $green-color;
-                }
-            }
-
-        }
-    }
-}
-@keyframes shine {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 0 100%;
-    }
+				@include xs{
+					font-size: $small + $normal
+				}
+			}
+		}
+		.description {
+			margin: 4rem 0;
+            max-width: 60rem;
+			p {
+				@include font($primaryFont, $normal, 300);
+			}
+		}
+		.button {
+			button {
+				@include button(max-width);
+			}
+		}
+	}
 }
 
-
-@media (max-width: 768px){
-    .hero{
-        .left{
-            display: none;
-        }
-    }
-}

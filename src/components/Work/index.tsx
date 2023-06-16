@@ -1,101 +1,137 @@
-import React from "react";
-import styles from "@/styles/Work.module.scss";
-import PageHeader from "@/components/PageHeader";
-import { MdTag, MdOutlineRemoveRedEye } from "react-icons/md";
-import { RiGithubLine } from "react-icons/ri";
-
+import React from 'react';
+import styles from '@/styles/Work.module.scss';
+import PageHeader from '@/components/PageHeader';
+import {
+	MdTag,
+	MdOutlineRemoveRedEye,
+	MdOutlineWorkOutline,
+} from 'react-icons/md';
+import { RiGithubLine } from 'react-icons/ri';
+import Link from 'next/link';
+import Image1 from '@/assets/image1.png';
+import Image from 'next/image';
+import {
+	VerticalTimeline,
+	VerticalTimelineElement,
+} from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 const workList = [
-    {
-        id: 1,
-        name: "Github Issue Page",
-        imageSrc:
-            "https://doc-geonode.readthedocs.io/en/latest/_images/listing-screen.png",
-        tags: ["React", "Redux"],
-    },
-    {
-        id: 2,
-        name: "Instagram Clone",
-        imageSrc:
-            "https://repository-images.githubusercontent.com/305868728/85d9d100-132e-11eb-8ba6-7165e97de719",
-        tags: ["Next", "Firebase"],
-    },
-    {
-        id: 3,
-        name: "PokeDex",
-        imageSrc:
-            "https://dz2cdn1.dzone.com/storage/temp/13937171-pokemon1.png",
-        tags: ["Javascript", "Redux"],
-    },
-    {
-        id: 4,
-        name: "Github Issue Page",
-        imageSrc:
-            "https://doc-geonode.readthedocs.io/en/latest/_images/listing-screen.png",
-        tags: ["React", "Redux"],
-    },
-    {
-        id: 5,
-        name: "Instagram Clone",
-        imageSrc:
-            "https://repository-images.githubusercontent.com/305868728/85d9d100-132e-11eb-8ba6-7165e97de719",
-        tags: ["Next", "Firebase"],
-    },
-    {
-        id: 6,
-        name: "PokeDex",
-        imageSrc:
-            "https://dz2cdn1.dzone.com/storage/temp/13937171-pokemon1.png",
-        tags: ["Javascript", "Redux"],
-    },
+	{
+		id: 1,
+		name: 'Movie App',
+		imageSrc: Image1,
+		tags: ['React', 'Redux'],
+		demo_link: 'https://themoviedb-jgl1qx4ph-iamdineshbasnet.vercel.app/',
+		source_code: 'https://github.com/iamdineshbasnet/Movie-App',
+	},
+	{
+		id: 2,
+		name: 'Dashboard',
+		imageSrc: Image1,
+		tags: ['Next', 'Firebase'],
+	},
+	// {
+	// 	id: 3,
+	// 	name: 'PokeDex',
+	// 	imageSrc: Image1,
+	// 	tags: ['Javascript', 'Redux'],
+	// },
+	// {
+	// 	id: 4,
+	// 	name: 'Github Issue Page',
+	// 	imageSrc: Image1,
+	// 	tags: ['React', 'Redux'],
+	// },
+	// {
+	// 	id: 5,
+	// 	name: 'Instagram Clone',
+	// 	imageSrc: Image1,
+	// 	tags: ['Next', 'Firebase'],
+	// },
+	// {
+	// 	id: 6,
+	// 	name: 'PokeDex',
+	// 	imageSrc: Image1,
+	// 	tags: ['Javascript', 'Redux'],
+	// },
 ];
-const index = () => {
-    return (
-        <main className={styles.work}>
-            <PageHeader title="My Work" subtitle="things I've built" />
+const Work = () => {
+	return (
+		<main className={styles.work} id="Work">
+			<section className={styles.section}>
+				<PageHeader title="My Work" subtitle="things I've built" />
 
-            <section className={styles.workSection}>
-                {/* <div className={styles.heading}>
-                    <p>featured project</p>
-                </div> */}
+				<section className={styles.workSection}>
+					<div className={styles.cardContainer}>
+						<VerticalTimeline layout="1-column-left">
+							{workList?.slice(0, 6)?.map((work, index) => (
+								<VerticalTimelineElement
+									key={index}
+									iconStyle={{
+										background: '#233554',
+										color: '#64ffda63',
+									}}
+									icon={
+										<MdOutlineWorkOutline
+											className={'icon'}
+										/>
+									}>
+									<section className={'card'}>
+										<div className={'cardTitle'}>
+											<h6>{work?.name}</h6>
+										</div>
 
-                <div className={styles.cardContainer}>
-                    {workList?.map((work, index) => (
-                        <section className={styles.card} key={index}>
-                            <div className={styles.cardTitle}>
-                                <h6>{work?.name}</h6>
-                            </div>
+										<div className={'cardImage'}>
+											<Image
+												src={work?.imageSrc}
+												alt=""
+												width={1000}
+												height={1000}
+											/>
+										</div>
 
-                            <div className={styles.cardImage}>
-                                <img src={work?.imageSrc} alt="" />
-                            </div>
+										<div className={'cardTagBox'}>
+											{work?.tags?.map((tag, i) => (
+												<div
+													className={'tagItem'}
+													key={i}>
+													<MdTag className={'icon'} />
+													<p className={'tagName'}>
+														{tag}
+													</p>
+												</div>
+											))}
+										</div>
 
-                            <div className={styles.cardTagBox}>
-                                {work?.tags?.map((tag, i) => (
-                                    <div className={styles.tagItem} key={i}>
-                                        <MdTag className={styles.icon} />
-                                        <p className={styles.tagName}>{tag}</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className={styles.cardAction}>
-                                <div className={styles.cardActionItem}>
-                                    <p>Github</p>
-                                    <RiGithubLine className={styles.icon} />
-                                </div>
-                                <div className={styles.cardActionItem}>
-                                    <p>Demo</p>
-                                    <MdOutlineRemoveRedEye
-                                        className={styles.icon}
-                                    />
-                                </div>
-                            </div>
-                        </section>
-                    ))}
-                </div>
-            </section>
-        </main>
-    );
+										<div className={'cardAction'}>
+											<Link
+												href={`${work?.source_code}`}
+												target="_blank"
+												className={'cardActionItem'}>
+												<p>Github</p>
+												<RiGithubLine
+													className={'icon'}
+												/>
+											</Link>
+											<Link
+												href={`${work?.demo_link}`}
+												target="_blank"
+												className={'cardActionItem'}>
+												<p>Demo</p>
+												<MdOutlineRemoveRedEye
+													className={'icon'}
+												/>
+											</Link>
+										</div>
+									</section>
+								</VerticalTimelineElement>
+							))}
+						</VerticalTimeline>
+					</div>
+				</section>
+			</section>
+		</main>
+	);
 };
 
-export default index;
+export default Work;
